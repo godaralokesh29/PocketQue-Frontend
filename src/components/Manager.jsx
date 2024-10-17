@@ -10,17 +10,17 @@ const Manager = () => {
     if (passwords) {
       setpassword(JSON.parse(passwords));
     }
-  });
+  },[]);
 
   const showPassword = () => {
     alert("Show password is clicked");
   };
   const savePassword = () => {
     console.log(form);
-    setpassword({ ...passwordArray, form });
+    setpassword([...passwordArray, form]);
     localStorage.setItem(
       "password",
-      JSON.stringify({ ...passwordArray, form })
+      JSON.stringify([...passwordArray, form])
     );
   };
   const handlechange = (e) => {
@@ -91,33 +91,28 @@ const Manager = () => {
         </div>
         
         <div className="passwords w-max ">
-          <h2 className="text-orange-300 text-center py-5">Your passwords</h2>
-          <table className="table-auto w-full bg-slate-800 text-orange-300 rounded-lg  ">
-            <thead>
+          <h2 className="text-orange-300 text-center text-3xl py-5">Your passwords</h2>
+          {passwordArray.length===0 && <div className="table-auto w-full bg-slate-800 text-orange-300 rounded-lg text-center "> No passwords to show</div>}
+          {passwordArray.length!=0 &&  <table className="table-auto w-full bg-slate-800 text-orange-300 rounded-lg  ">
+            <thead >
               <tr>
-                <th className="py-2">Song</th>
-                <th className="py-2">Artist</th>
-                <th className="py-2">Year</th>
+                <th className="py-2">site</th>
+                <th className="py-2">username</th>
+                <th className="py-2">password</th>
               </tr>
             </thead >
-            <tbody className="text-center table-auto w-full bg-sky-500 text-orange-300 rounded-lg overflow-hidden py-2 ">
-              <tr>
-                <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                <td>Malcolm Lockyer</td>
-                <td>1961</td>
+            <tbody className="text-center table-auto w-full  bg-sky-500 text-orange-300 rounded-lg overflow-hidden py-2 ">
+                {passwordArray.map((item,index)=>{
+                      return  <tr key={index}>
+                <td className="py-2 border-white text-center w-32">{item.site}</td>
+                <td className="py-2 border-white text-center w-32">{item.username}</td>
+                <td className="py-2 border-white text-center w-32">{item.password}</td>
               </tr>
-              <tr>
-                <td>Witchy Woman</td>
-                <td>The Eagles</td>
-                <td>1972</td>
-              </tr>
-              <tr>
-                <td>Shining Star</td>
-                <td>Earth, Wind, and Fire</td>
-                <td>1975</td>
-              </tr>
+                })}
+              
+             
             </tbody>
-          </table>
+          </table>}
         </div>
       </div>
     </div>
