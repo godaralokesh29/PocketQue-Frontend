@@ -69,10 +69,10 @@ const Manager = () => {
                 className="w-45 rounded-lg border-4 border-indigo-500/50"
               />
               <button
-                className="absolute right-0.5 top-1    font-bold"
+                className="absolute right-0.5 top-1  font-bold"
                 onClick={showPassword}
               >
-                show
+               show
               </button>
             </div>
           </div>
